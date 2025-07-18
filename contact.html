@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - K-Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/styles.css">
+</head>
+<body>
+  <header>
+     <nav>
+      <a href="index.html" class="logo"><img src="public/img/logo.png" alt="K-Fitness Logo"></a>
+      <button class="nav-toggle">
+        <span></span>
+      </button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="transformations.html">Transformations</a></li>
+        <li><a href="equipment.html">Equipment</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact">
+      <div class="container">
+        <h1>Contact K-Fitness</h1>
+        <p>Get in touch with us for inquiries, memberships, or a tour of our gym.</p>
+        <div class="contact-content">
+          <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="whatsapp-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h2>Visit Us</h2>
+            <div class="map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.879506247493!2d73.83721327522825!3d19.97156898142618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb88adf7e625%3A0xf72761576a671e52!2sK%20Fitness!5e0!3m2!1sen!2sin!4v1752844823978!5m2!1sen!2sin" width="300" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p><strong>Address:</strong> City Arcade Complex, Jail Rd, Krishna Colony, Nashik Road, Nashik, Maharashtra 422214</p>
+            <div class="contact-buttons">
+              <a href="tel:+919890284347" class="btn btn-secondary">Call Us</a>
+              <a href="https://wa.me/9890284347" class="btn btn-whatsapp">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 K-Fitness. All rights reserved.</p>
+  </footer>
+
+  <script src="public/js/script.js"></script>
+</body>
+</html>

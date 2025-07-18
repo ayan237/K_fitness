@@ -1,0 +1,1185 @@
+/* public/css/styles.css */
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* Global styles */
+body {
+  font-family: 'Roboto', sans-serif; /* NEW default font for paragraphs */
+  background-color: #1a1a1a;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* NEW rule for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif; /* The 'bulky' font */
+  text-transform: uppercase;         /* Makes text ALL CAPS for a stronger look */
+  letter-spacing: 1.5px;             /* Adds a little space between letters */
+}
+
+/* Replace the existing header and nav styles in public/css/styles.css */
+
+/* Header and Navigation */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.3rem 1rem; /* Compact padding */
+  background: rgba(0, 0, 0, 0.2); /* Glass effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-height: 110px; /* Constrain height */
+}
+
+.logo {
+  display: block;
+}
+
+.logo img {
+  height: 90px; /* Larger logo */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 1.2rem;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff0000;
+}
+
+nav ul li a.active {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Hamburger toggle button */
+.nav-toggle {
+  display: none;
+  background-color: transparent; /* <-- ADD THIS LINE */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  outline: none;
+  /* Ensure it appears above other elements if needed */
+  z-index: 101; 
+}
+
+.nav-toggle::before,
+.nav-toggle::after,
+.nav-toggle span {
+  content: '';
+  display: block;
+  background: #ff0000; /* Red lines */
+  height: 4px;
+  width: 24px;
+  position: absolute;
+  left: 3px;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle::before {
+  top: 6px;
+}
+
+.nav-toggle span {
+  top: 13px;
+}
+
+.nav-toggle::after {
+  top: 20px;
+}
+
+/* Hamburger animation on click */
+.nav-toggle.active::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span {
+  opacity: 0;
+}
+
+.nav-toggle.active::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-toggle:hover::before,
+.nav-toggle:hover::after,
+.nav-toggle:hover span {
+  background: #cc0000; /* Darker red on hover */
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.5rem 1rem;
+    max-height: 90px;
+    /* --- CHANGES START HERE --- */
+    position: relative; /* This is crucial for positioning the logo */
+    justify-content: flex-end; /* This pushes the hamburger icon to the right */
+    /* --- CHANGES END HERE --- */
+  }
+  /* --- ADD THIS NEW RULE TO CENTER THE LOGO --- */
+  .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .logo img {
+    height: 75px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
+    padding: 1rem;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 0.5rem 0;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  nav {
+    padding: 0.2rem 0.5rem;
+    max-height: 75px; /* Updated from 40px */
+  }
+
+  .logo img {
+    height: 60px; /* Updated from 36px */
+  }
+
+  .nav-toggle {
+    width: 26px;
+    height: 26px;
+  }
+
+  .nav-toggle::before,
+  .nav-toggle::after,
+  .nav-toggle span {
+    height: 3px;
+    width: 20px;
+    left: 3px;
+  }
+
+  .nav-toggle::before {
+    top: 5px;
+  }
+
+  .nav-toggle span {
+    top: 11px;
+  }
+
+  .nav-toggle::after {
+    top: 17px;
+  }
+
+  .nav-toggle.active::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav-toggle.active::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  nav ul {
+    top: 75px; /* IMPORTANT: Match this to the new nav height */
+    padding: 0.8rem;
+  }
+}
+
+/* Hero Section */
+/* In styles.css, replace the old .hero rule with this block */
+
+.hero {
+  position: relative; /* Crucial for positioning the video behind the text */
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden; /* Ensures video doesn't spill out */
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits behind the hero content */
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes the video cover the area without stretching */
+}
+
+/* This creates the dark overlay on top of the video */
+.video-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Ensures text and buttons are on top of the video overlay */
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons .btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  margin: 0 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary:hover {
+  background-color: #cc0000;
+}
+
+.btn-secondary:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+/* Intro Section */
+.intro {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  animation: slideUp 1s ease-in;
+}
+
+.intro-content h2 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
+
+.intro-content p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Footer */
+footer {
+  background-color: #000000;
+  padding: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .intro-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .intro-content p {
+    font-size: 1rem;
+  }
+
+  .cta-buttons .btn {
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+  }
+}
+/* Add to public/css/styles.css */
+.nav-toggle {
+  display: none;
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+/* Add to public/css/styles.css */
+
+/* Transformations Section */
+.transformations {
+  padding: 3rem 1rem;
+  background-color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.transformations h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.transformations p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.transformations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.transformation-card {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 1s ease-in;
+}
+
+.transformation-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.before-after {
+  display: flex;
+  justify-content: space-between;
+}
+
+.before-after img {
+  width: 50%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ff0000;
+}
+
+.transformation-card h3 {
+  font-size: 1.5rem;
+  color: #ff0000;
+  margin: 1rem;
+}
+
+.transformation-card p {
+  font-size: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+/* Active nav link */
+nav ul li a.active {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .transformations h1 {
+    font-size: 2rem;
+  }
+
+  .transformations p {
+    font-size: 1rem;
+  }
+
+  .before-after img {
+    height: 150px;
+  }
+
+  .transformation-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .transformation-card p {
+    font-size: 0.9rem;
+  }
+}
+/* Add to public/css/styles.css */
+
+/* Equipment Section */
+.equipment {
+  padding: 3rem 1rem;
+  background-color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.equipment h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.equipment p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.equipment-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.equipment-card {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 1s ease-in;
+}
+
+.equipment-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.equipment-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ff0000;
+}
+
+.equipment-card h3 {
+  font-size: 1.5rem;
+  color: #ff0000;
+  margin: 1rem;
+}
+
+.equipment-card p {
+  font-size: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .equipment h1 {
+    font-size: 2rem;
+  }
+
+  .equipment p {
+    font-size: 1rem;
+  }
+
+  .equipment-card img {
+    height: 150px;
+  }
+
+  .equipment-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .equipment-card p {
+    font-size: 0.9rem;
+  }
+}
+/* Add to public/css/styles.css */
+
+/* Membership Section */
+.membership {
+  padding: 3rem 1rem;
+  background-color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.membership h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.membership p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.pricing-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.pricing-card {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 1s ease-in;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.pricing-card h3 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
+
+.pricing-card .price {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card .price span {
+  font-size: 1rem;
+  color: #cccccc;
+}
+
+.pricing-card ul {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.pricing-card ul li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.pricing-card .btn-primary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #ff0000;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pricing-card .btn-primary:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+.popular {
+  border: 2px solid #ff0000;
+  position: relative;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .membership h1 {
+    font-size: 2rem;
+  }
+
+  .membership p {
+    font-size: 1rem;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .pricing-card .price {
+    font-size: 2rem;
+  }
+
+  .pricing-card ul li {
+    font-size: 0.9rem;
+  }
+
+  .pricing-card .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* Add to public/css/styles.css */
+
+/* About Section */
+.about {
+  padding: 3rem 1rem;
+  background-color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.about p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.bio h2 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation:  slideUp 1s ease-in;
+}
+
+.bio p {
+  font-size: 1rem;
+  text-align: left;
+}
+
+.photo img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #ff0000;
+  animation:  slideUp 1s ease-in;
+}
+
+.mission h2 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation:  slideUp 1s ease-in;
+}
+
+.mission p {
+  font-size: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.certifications h2 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation:  slideUp 1s ease-in;
+}
+
+.certifications ul {
+  list-style: none;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.certifications ul li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  text-align: left;
+}
+
+.certifications ul li::before {
+  content: "✔";
+  color: #ff0000;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about h1 {
+    font-size: 2rem;
+  }
+
+  .about p {
+    font-size: 1rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .bio h2 {
+    font-size: 1.5rem;
+  }
+
+  .bio p {
+    font-size: 0.9rem;
+  }
+
+  .photo img {
+    max-height: 300px;
+  }
+
+  .mission h2 {
+    font-size: 1.5rem;
+  }
+
+  .mission p {
+    słys: 0.9rem;
+  }
+
+  .certifications h2 {
+    font-size: 1.5rem;
+  }
+
+  .certifications ul li {
+    font-size: 0.9rem;
+  }
+}
+/* Add to public/css/styles.css */
+
+/* Contact Section */
+.contact {
+  padding: 3rem 1rem;
+  background-color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-form h2,
+.contact-info h2 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: slideUp 1s ease-in;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ff0000;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #cc0000;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .btn-primary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #ff0000;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form .btn-primary:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+.contact-info .map {
+  margin-bottom: 1.5rem;
+}
+
+.contact-info iframe {
+  border-radius: 10px;
+  border: 2px solid #ff0000;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-secondary,
+.btn-whatsapp {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1DA851;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact h1 {
+    font-size: 2rem;
+  }
+
+  .contact p {
+    font-size: 1rem;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form h2,
+  .contact-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-form .btn-primary,
+  .contact-buttons .btn-secondary,
+  .contact-buttons .btn-whatsapp {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-info iframe {
+    height: 250px;
+  }
+}
+/* Add this anywhere in your CSS file */
+body[style*="overflow: hidden"] {
+  padding-right: 15px; /* Adjust if you see a layout shift from scrollbar disappearing */
+}
+/* Add this anywhere in your styles.css file */
+
+.gallery-trigger-card {
+  background-color: #ff0000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 2px dashed #ffffff;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.gallery-trigger-card:hover {
+  background-color: #cc0000;
+  transform: translateY(-5px);
+}
+
+.gallery-trigger-card h3 {
+  color: #ffffff;
+}
+
+.gallery-trigger-card p {
+  color: #eeeeee;
+}
+
+/* Helper class to hide elements */
+.hidden {
+  display: none;
+}
+/* Add this anywhere in styles.css */
+
+/* Styles for the Image Modal (Lightbox) */
+.equipment-card img {
+  cursor: pointer;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: auto;
+  max-width: 85%;
+  max-height: 85vh;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+/* Add this to the end of styles.css */
+
+@media (max-width: 768px) {
+  /* On mobile, we hide the video to save battery/data */
+  .video-background {
+    display: none;
+  }
+
+  /* And instead, we show a fallback image on the hero section */
+  .hero {
+    background: 
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+      url('../img/hero-mobile-backup.jpg');
+    
+    background-position: center;
+    background-size: cover;
+  }
+}
+.before-after-images {
+  display: flex; /* This is the key line for side-by-side layout */
+}
+
+.image-container {
+  width: 50%; /* This makes each image container take up half the space */
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
